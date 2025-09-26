@@ -1,0 +1,16 @@
+services:
+  api:
+    volumes:
+      # Base volumes from docker-compose.yml
+      - type: bind
+        source: ./.env
+        target: /app/.env
+      - ./images:/app/client/public/images
+      - ./uploads:/app/uploads
+      - ./logs:/app/api/logs
+      - ./logs:/app/logs  # Additional mount for logs directory
+      # Additional volumes for configuration and data
+      - type: bind
+        source: ./librechat.yaml
+        target: /app/librechat.yaml
+      - ./data:/app/data
